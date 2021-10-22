@@ -1,0 +1,20 @@
+{% extends 'customer/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-5 col-sm-12">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <legend class="text-center border-bottom">Join Today</legend>
+                    {{ form|crispy }}
+                    <button class="btn btn-info btn-block mt-2">SignIn</button>
+                </form>
+                <div class="mt-2 mb-5">
+                    Already have an account?<a class="pl-2" href="{% url 'login' %}">SignIn</a>
+                </div>
+            </div>
+        </div>
+        <br><br>
+    </div>
+{% endblock content %}

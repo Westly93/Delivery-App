@@ -1,0 +1,35 @@
+{% extends 'customer/base.html' %}
+{% block content %}
+    <div class="container">
+        <h1 class="text-center mt-4">Order ID: {{ order.pk }}</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-5 col-sm-12">
+                <p style="font-weight: 400; font-size: 2rem;" class="text-center">Customer Infomation:</p>
+                <p><strong>Customer Name: </strong> <span style="margin-left: 2rem;">{{ order.name }}</span></p>
+                <p><strong>Email: </strong><span style="margin-left: 2rem;">{{ order.email }}</span></p>
+                <h5>Address Information</h5>
+                <p><strong>Street: </strong><span style="margin-left: 2rem;">{{ order.street }}</span></p>
+                <p><strong>City: </strong><span style="margin-left: 2rem;">{{ order.city }}</span></p>
+                <p><strong>State: </strong><span style="margin-left: 2rem;">{{ order.state }}</span></p>
+                <p><strong>Zip Code: </strong><span style="margin-left: 2rem;">+{{ order.zip_code }}</span></p>
+            </div>
+            <div class="col-md-5 col-sm-12 offset-md-1">
+                <p style="font-weight: 400; font-size: 2rem;" class="text-center">Shipping Information</p>
+                {% if order.is_paid %}
+                    <p style="font-size: 1.5rem;" class="text-success"><span>&check;</span> The order is paid</p>
+                {% else %}
+                    <p style="font-size: 1.5rem;" class="text-danger"><span>&times;</span> order is not paid</p>
+                {% endif %}
+                {% if order.is_shipped %}
+                    <p style="font-size: 1.5rem;" class="text-success"><span>&check;</span> order has been shipped</p>
+                {% else %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-success">Mark as shipped</button>
+                    </form>
+                {% endif %}
+            </div>
+            
+        </div>
+    </div>
+{% endblock content %}

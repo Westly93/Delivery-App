@@ -1,0 +1,123 @@
+{% extends 'customer/base.html' %}
+{% block content %}
+<div class="container mb-5">
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-12 col-sm-12 p-4">
+            <form method= "POST">
+                {% csrf_token %}
+                <div class="mt-5">
+                    {% for appetizer in appetizers %}
+                        <div class="row">
+                            <div class="col-md-2 col-sm-12">
+                                <img style="object-fit: cover; width: 100%; height: 100%;" src="{{ appetizer.image.url }}" alt="" class="rounded">
+                            </div>
+                            <div class="col-md-8 col-sm-12">
+                                <div class="d-flex flex-row">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="items[]" id="{{ appetizer.pk }}" class="form-check-input" value="{{ appetizer.pk }}">
+                                        <label class="form-check-label" for="">{{ appetizer.name }}</label>
+                                    </div>
+                                    <p style= "margin-left: 3rem;" class="font-weight-bold">{{ appetizer.price }}</p>
+                                </div>
+                                <p>{{ appetizer.description }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="mt-5">
+                    {% for drink in drinks %}
+                        <div class="row">
+                            <div class="col-md-2 col-sm-12">
+                                <img style="object-fit: cover; width: 100%; height: 100%;" src="{{ drink.image.url }}" alt="" class="rounded">
+                            </div>
+                            <div class="col-md-8 col-sm-12">
+                                <div class="d-flex flex-row">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="items[]" id="{{ drink.pk }}" class="form-check-input" value="{{ drink.pk }}">
+                                        <label class="form-check-label" for="">{{ drink.name }}</label>
+                                    </div>
+                                    <p style= "margin-left: 3rem;" class="font-weight-bold pl-5">{{ drink.price }}</p>
+                                </div>
+                                <p>{{ drink.description }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="mt-5">
+                    {% for entre in entres %}
+                        <div class="row">
+                            <div class="col-md-2 col-sm-12">
+                                <img style="object-fit: cover; width: 100%; height: 100%;" src="{{ entre.image.url }}" alt="" class="rounded">
+                            </div>
+                            <div class="col-md-8 col-sm-12">
+                                <div class="d-flex flex-row">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="items[]" id="{{ entre.pk }}" class="form-check-input" value="{{ entre.pk }}">
+                                        <label class="form-check-label" for="">{{ entre.name }}</label>
+                                    </div>
+                                    <p style= "margin-left: 3rem;" class="font-weight-bold pl-5">{{ entre.price }}</p>
+                                </div>
+                                <p>{{ entre.description }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="mt-5">
+                    {% for dessert in desserts %}
+                        <div class="row">
+                            <div class="col-md-2 col-sm-12">
+                                <img style="object-fit: cover; width: 100%; height: 100%;" src="{{ dessert.image.url }}" alt="" class="rounded">
+                            </div>
+                            <div class="col-md-8 col-sm-12">
+                                <div class="d-flex flex-row">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="items[]" id="{{ dessert.pk }}" class="form-check-input" value="{{ dessert.pk }}">
+                                        <label class="form-check-label" for="">{{ dessert.name }}</label>
+                                    </div>
+                                    <p style= "margin-left: 3rem;" class="font-weight-bold pl-5">{{ dessert.price }}</p>
+                                </div>
+                                <p>{{ dessert.description }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="form-group mt-2">
+                    <label for="name">Full Name</label>
+                    <input required type="text" class="form-control" name="name" placeholder="Your Name">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="email">Email</label>
+                    <input required type="email" class="form-control" name="email" placeholder="example@gmail.com">
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group mt-2">
+                            <label for="street">Street</label>
+                            <input required type="text" class="form-control" placeholder="1234 Main st" name="street">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group mt-2">
+                            <label for="city">City</label>
+                            <input required type="text" class="form-control" placeholder="Bindura" name= "city">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group mt-2">
+                            <label for="state">State</label>
+                            <input required type="text" class="form-control" placeholder="ZW" name="state">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group mt-2">
+                            <label for="zip_code">Zip Code</label>
+                            <input required type="text" class="form-control" placeholder="3117" name="zip_code">
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-outline-info btn-sm mt-2" type="submit">Place Order</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

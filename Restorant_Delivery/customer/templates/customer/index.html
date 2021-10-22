@@ -1,0 +1,16 @@
+{% extends 'customer/base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row mt-4 justify-content-center">
+            <div class="col-md-8 col-sm-12 offset-md-1 text-center">
+                <h2>Welcome to our food delivery app </h2>
+            </div>
+        </div>
+        <div class="row mt-4 justify-content-center">
+            <div class="card col-md-4 col-sm-12 offset-md-1 text-center p-4">
+                <h4 class="mt-2">Place Your Order</h4>
+                <a href="{% url 'order' %}" class="btn btn-outline-primary mb-4 py-2 mt-2">Place Order!</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
